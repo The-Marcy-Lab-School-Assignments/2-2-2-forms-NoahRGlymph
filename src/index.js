@@ -5,24 +5,45 @@
 const handleSubmit = (event) => {
     event.preventDefault();
     // Other form handling logic
+    const form = event.target
+const formData = new FormData(event.target);
+const {username, codingLevel, location, didLikeAssignment } = Object.fromEntries(formData);
+
+
     
     // Get the value of didLikeAssignment
-    const didLikeAssignment = document.querySelector('input[name="didLikeAssignment"]').checked;
     
+    const usernameSpan = document.querySelector('#results-username');
+
+    const codingLevelSpan = document.querySelector('#results-coding-level');
+
+    const locationSpan = document.querySelector('#results-location');
+
     // Get the span element
-    const didLikeResultSpan = document.getElementById('didLikeResult');
+    const didLikeResultSpan = document.getElementById('results-did-like-assignment');
     
     // Update the span content based on the value of didLikeAssignment
     didLikeResultSpan.textContent = didLikeAssignment ? 'Yes' : 'No';
   
+    usernameSpan.textContent = username
+
+    codingLevelSpan.textContent = codingLevel
+
+    locationSpan.textContent = location
+
+
+
+
     // Clear the form
-    event.target.reset();
+    form.reset();
   };
   
-  document.addEventListener("DOMContentLoaded", () => {
+ const main = () => {
     const form = document.querySelector("#new-user-form");
     form.addEventListener("submit", handleSubmit);
-  });
+  };
+
+  main()
   
   
   
